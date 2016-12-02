@@ -27,7 +27,7 @@ public class Main extends Application
 
             Scene scene = new Scene(root, 800, 600);
 
-            ((MainController)loader.getController()).init(primaryStage);
+            ((MainController)loader.getController()).init(primaryStage, null);
 
             primaryStage.setTitle("GenericPuzzle");
             primaryStage.setScene(scene);
