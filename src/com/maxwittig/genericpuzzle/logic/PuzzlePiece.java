@@ -30,4 +30,9 @@ public class PuzzlePiece
     {
         return position;
     }
+
+    public void setPosition(Point2D position)
+    {
+        this.position = position;
+    }
 }

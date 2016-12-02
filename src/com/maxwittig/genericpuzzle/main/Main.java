@@ -1,11 +1,13 @@
 package com.maxwittig.genericpuzzle.main;
 
+import com.maxwittig.genericpuzzle.logic.Board;
 import com.maxwittig.genericpuzzle.ui.controller.MainController;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -44,8 +46,11 @@ public class Main extends Application
                 }
             });
 
-
             primaryStage.show();
+
+            //debug
+            Board board = new Board(new Image("https://pictureis24-a.akamaihd.net/pic/orig03/N/533/423/262/533423262-0.jpg/ORIG/legacy_thumbnail/519x380/format/jpg/quality/50"), 9);
+            ((MainController)loader.getController()).setBoard(board);
         }
         catch(Exception e)
         {

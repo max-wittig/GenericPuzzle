@@ -1,7 +1,7 @@
 package com.maxwittig.genericpuzzle.logic;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.*;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Point2D;
@@ -60,7 +60,38 @@ public class Board
 			}
             completePuzzle.add(row);
 		}
+
+		mixedPuzzle = (ArrayList<ArrayList<PuzzlePiece>>)completePuzzle.clone();
+		shuffle();
 	}
+
+	public void shuffle()
+    {
+        ArrayList<Point2D> positions = new ArrayList<>();
+
+        //get all positions
+        for(ArrayList<PuzzlePiece> row : mixedPuzzle)
+        {
+            for(PuzzlePiece puzzlePiece : row)
+            {
+                positions.add(puzzlePiece.getPosition());
+            }
+        }
+
+        //shuffle all positions
+        Collections.shuffle(positions);
+
+        //reInput positions
+        int number = 0;
+        for(ArrayList<PuzzlePiece> row : mixedPuzzle)
+        {
+            for(PuzzlePiece puzzlePiece : row)
+            {
+                puzzlePiece.setPosition(positions.get(number));
+                number++;
+            }
+        }
+    }
 
 	public int getMaxHeight()
     {
@@ -75,5 +106,10 @@ public class Board
     public ArrayList<ArrayList<PuzzlePiece>> getCompletePuzzle()
     {
         return completePuzzle;
+    }
+
+    public ArrayList<ArrayList<PuzzlePiece>> getMixedPuzzle()
+    {
+        return mixedPuzzle;
     }
 }

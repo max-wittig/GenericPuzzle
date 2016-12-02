@@ -4,11 +4,13 @@ package com.maxwittig.genericpuzzle.ui.controller;
 import com.maxwittig.genericpuzzle.logic.Board;
 import com.maxwittig.genericpuzzle.logic.PuzzlePiece;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -19,6 +21,7 @@ public class MainController extends Controller
 
     private Board board;
     @FXML private GridPane gridPane;
+    private PuzzlePiece currentlySelectedPiece;
 
     @Override
     protected void initController()
@@ -55,8 +58,9 @@ public class MainController extends Controller
 
     public void setBoard(Board board)
     {
+        //debug
         this.board = board;
-        showBoard();
+        refreshBoard();
     }
 
     private void adjustGridPane()
@@ -78,25 +82,36 @@ public class MainController extends Controller
             c.setPercentHeight(yPercentage * 100);
             gridPane.getRowConstraints().add(c);
         }
-        gridPane.setGridLinesVisible(true);
+        //gridPane.setGridLinesVisible(true);
     }
 
-    private void showBoard()
+    private void refreshBoard()
     {
         gridPane.getChildren().clear();
-        adjustGridPane();
-        for(ArrayList<PuzzlePiece> row : board.getCompletePuzzle())
+        for(ArrayList<PuzzlePiece> row : board.getMixedPuzzle())
         {
             for(PuzzlePiece puzzlePiece : row)
             {
                 StackPane stackPane = new StackPane();
                 ImageView imageView = new ImageView(puzzlePiece.getImage());
+                imageView.setOnMouseClicked(new EventHandler<MouseEvent>()
+                {
+                    @Override
+                    public void handle(MouseEvent event)
+                    {
+                       onImageViewClicked(puzzlePiece);
+                    }
+                });
                 stackPane.setStyle("-fx-border-color: black;");
                 stackPane.getChildren().add(imageView);
-                System.out.println((int)puzzlePiece.getPosition().getX());
                 gridPane.add(stackPane, (int)puzzlePiece.getPosition().getX(), (int)puzzlePiece.getPosition().getY());
             }
         }
         adjustGridPane();
+    }
+
+    private void onImageViewClicked(PuzzlePiece puzzlePiece)
+    {
+
     }
 }
