@@ -155,4 +155,14 @@ public class MainController extends Controller
             refreshBoard();
         }
     }
+
+    @FXML
+    private void onAboutItemClicked()
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText(null);
+        alert.setContentText("Made by Max Wittig in 2016 with the help of deadlocker.");
+        alert.show();
+    }
 }
