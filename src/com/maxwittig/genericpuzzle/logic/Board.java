@@ -65,19 +65,25 @@ public class Board
 		shuffle();
 	}
 
-	public void shuffle()
+	private ArrayList<Point2D> getPuzzlePositions(ArrayList<ArrayList<PuzzlePiece>> puzzleArrayList)
     {
         ArrayList<Point2D> positions = new ArrayList<>();
 
         //get all positions
-        for(ArrayList<PuzzlePiece> row : mixedPuzzle)
+        for(ArrayList<PuzzlePiece> row : puzzleArrayList)
         {
             for(PuzzlePiece puzzlePiece : row)
             {
                 positions.add(puzzlePiece.getPosition());
             }
         }
+        return positions;
+    }
 
+	private void shuffle()
+    {
+
+        ArrayList<Point2D> positions = getPuzzlePositions(mixedPuzzle);
         //shuffle all positions
         Collections.shuffle(positions);
 
@@ -93,11 +99,34 @@ public class Board
         }
     }
 
-    public void swapPieces(PuzzlePiece puzzlePiece, PuzzlePiece puzzlePiece2)
+    /**
+     *
+     * @param puzzlePiece
+     * @param puzzlePiece2
+     * @return if puzzle is finished --> complete puzzle == mixedpuzzle positions
+     */
+    public boolean swapPieces(PuzzlePiece puzzlePiece, PuzzlePiece puzzlePiece2)
     {
         Point2D tempPosition = puzzlePiece2.getPosition();
         puzzlePiece2.setPosition(puzzlePiece.getPosition());
         puzzlePiece.setPosition(tempPosition);
+        return isPuzzleDone();
+    }
+
+    private boolean isPuzzleDone()
+    {
+        for(int h=0; h < getMaxHeight(); h++)
+        {
+            for(int w=0; w < getMaxWidth(); w++)
+            {
+                if(mixedPuzzle.get(h).get(w).getPosition().getX() != w ||
+                        mixedPuzzle.get(h).get(w).getPosition().getY() != h)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 	public int getMaxHeight()

@@ -11,7 +11,7 @@
       <Button fx:id="imagePickButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onChoseFileButtonClicked" prefHeight="26.0" prefWidth="165.0" text="Pick Image" />
       <Label fx:id="imagePickLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="26.0" prefWidth="165.0" text="No Image selected" textAlignment="CENTER" />
       <Label layoutX="14.0" layoutY="68.0" text="Number of puzzle pieces:" />
-      <Slider fx:id="puzzlePiecesSlider" layoutX="188.0" layoutY="68.0" majorTickUnit="2.0" min="4.0" minorTickCount="2" snapToTicks="true" value="2.0" />
-      <Label fx:id="puzzlePiecesLabel" layoutX="328.0" layoutY="68.0" prefHeight="16.0" prefWidth="34.0" text="2" />
+      <Slider fx:id="puzzlePiecesSlider" layoutX="188.0" layoutY="68.0" majorTickUnit="2.0" min="4.0" minorTickCount="2" snapToTicks="true" value="4.0" />
+      <Label fx:id="puzzlePiecesLabel" layoutX="328.0" layoutY="68.0" prefHeight="16.0" prefWidth="34.0" text="4" />
    </children>
 </AnchorPane>

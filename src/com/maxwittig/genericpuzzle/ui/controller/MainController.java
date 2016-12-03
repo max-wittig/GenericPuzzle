@@ -3,14 +3,13 @@ package com.maxwittig.genericpuzzle.ui.controller;
 
 import com.maxwittig.genericpuzzle.logic.Board;
 import com.maxwittig.genericpuzzle.logic.PuzzlePiece;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -109,16 +108,25 @@ public class MainController extends Controller
                     public void handle(MouseEvent event)
                     {
                         onImageViewClicked(puzzlePiece);
-                        stackPane.setStyle("-fx-border-color: red;");
+                        stackPane.setStyle("-fx-border-color: red; -fx-border-width: 2px;");
                     }
                 });
-                stackPane.setStyle("-fx-border-color: black;");
+                stackPane.setStyle("-fx-border-color: black; -fx-border-width: 2px;");
                 gridPane.add(stackPane, (int)puzzlePiece.getPosition().getX(), (int)puzzlePiece.getPosition().getY());
-                stackPane.setBackground(getBackGroundFromImage(puzzlePiece.getImage(), 1, 1));
+                stackPane.setBackground(getBackGroundFromImage(puzzlePiece.getImage(), 0.99, 0.99));
 
             }
         }
         adjustGridPane();
+    }
+
+    private void showWinAlert()
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("You won!");
+        alert.setHeaderText(null);
+        alert.setContentText("Congratulations!");
+        alert.show();
     }
 
     private void onImageViewClicked(PuzzlePiece puzzlePiece)
@@ -129,7 +137,10 @@ public class MainController extends Controller
         }
         else
         {
-            board.swapPieces(currentlySelectedPiece, puzzlePiece);
+            if(board.swapPieces(currentlySelectedPiece, puzzlePiece))
+            {
+                showWinAlert();
+            }
             currentlySelectedPiece = null;
             refreshBoard();
         }

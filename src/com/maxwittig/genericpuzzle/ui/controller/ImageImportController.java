@@ -1,6 +1,7 @@
 package com.maxwittig.genericpuzzle.ui.controller;
 
 import com.maxwittig.genericpuzzle.logic.Board;
+import com.maxwittig.genericpuzzle.main.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -13,15 +14,31 @@ import java.io.File;
 
 public class ImageImportController extends Controller
 {
-    @FXML private Label imagePickLabel;
-    @FXML private Slider puzzlePiecesSlider;
-    @FXML private Label puzzlePiecesLabel;
+    @FXML
+    private Label imagePickLabel;
+    @FXML
+    private Slider puzzlePiecesSlider;
+    @FXML
+    private Label puzzlePiecesLabel;
     private int numberOfPuzzlePieces = 2;
     private Image selectedImage = null;
 
     @Override
     protected void initController()
     {
+        puzzlePiecesSlider.valueProperty().addListener(new ChangeListener<Number>()
+        {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue)
+            {
+                int sqrt = (int) Math.sqrt(newValue.intValue());
+                if (sqrt * sqrt != newValue.intValue())
+                {
+                    puzzlePiecesSlider.setValue(oldValue.intValue());
+                }
+            }
+        });
+
         puzzlePiecesSlider.valueProperty().addListener(new ChangeListener<Number>()
         {
             @Override
@@ -39,7 +56,7 @@ public class ImageImportController extends Controller
         fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Images", "png", "jpeg"));
         fileChooser.setTitle("Chose Image...");
         File selectedFile = fileChooser.showOpenDialog(stage.getOwner());
-        if(selectedFile != null && selectedFile.exists())
+        if (selectedFile != null && selectedFile.exists())
         {
             imagePickLabel.setText(selectedFile.getName());
             System.out.println(selectedFile.getPath());
@@ -64,10 +81,10 @@ public class ImageImportController extends Controller
     @FXML
     private void importImage()
     {
-        if(selectedImage != null)
+        if (selectedImage != null)
         {
             Board board = new Board(selectedImage, numberOfPuzzlePieces);
-            ((MainController)parentController).setBoard(board);
+            ((MainController) parentController).setBoard(board);
         }
     }
 }
