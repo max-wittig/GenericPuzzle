@@ -13,6 +13,7 @@ import javafx.stage.WindowEvent;
 
 public class Main extends Application
 {
+    private final boolean debug = false;
 
     public static void main(String[] args)
     {
@@ -33,7 +34,7 @@ public class Main extends Application
 
             primaryStage.setTitle("GenericPuzzle");
             primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
+            primaryStage.setResizable(true);
             primaryStage.setMinWidth(600);
             primaryStage.setMinHeight(400);
 
@@ -49,8 +50,11 @@ public class Main extends Application
             primaryStage.show();
 
             //debug
-            Board board = new Board(new Image("https://pictureis24-a.akamaihd.net/pic/orig03/N/533/423/262/533423262-0.jpg/ORIG/legacy_thumbnail/519x380/format/jpg/quality/50"), 9);
-            ((MainController)loader.getController()).setBoard(board);
+            if(debug)
+            {
+                Board board = new Board(new Image("https://pictureis24-a.akamaihd.net/pic/orig03/N/533/423/262/533423262-0.jpg/ORIG/legacy_thumbnail/519x380/format/jpg/quality/50"), 9);
+                ((MainController) loader.getController()).setBoard(board);
+            }
         }
         catch(Exception e)
         {

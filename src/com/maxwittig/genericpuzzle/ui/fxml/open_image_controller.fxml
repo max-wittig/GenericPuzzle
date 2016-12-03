@@ -8,12 +8,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.maxwittig.genericpuzzle.ui.controller.ImageImportController">
    <children>
-      <Button layoutX="174.0" layoutY="270.0" mnemonicParsing="false" onAction="#importImage" text="Open" />
-      <Button fx:id="imagePickButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onChoseFileButtonClicked" prefHeight="26.0" prefWidth="165.0" text="Pick Image" />
-      <Label fx:id="imagePickLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="14.0" prefHeight="26.0" prefWidth="165.0" text="No Image selected" textAlignment="CENTER" />
-      <Label layoutX="27.0" layoutY="215.0" text="Number of puzzle pieces:" />
-      <Slider fx:id="puzzlePiecesSlider" layoutX="201.0" layoutY="215.0" majorTickUnit="2.0" min="4.0" minorTickCount="2" snapToTicks="true" value="4.0" />
-      <Label fx:id="puzzlePiecesLabel" layoutX="341.0" layoutY="215.0" prefHeight="16.0" prefWidth="34.0" text="4" />
-      <ImageView fx:id="previewImageView" fitHeight="150.0" fitWidth="358.0" layoutX="16.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="55.0" />
+      <Button layoutX="174.0" layoutY="270.0" mnemonicParsing="false" onAction="#importImage" text="Open" AnchorPane.bottomAnchor="14.0" />
+      <Button fx:id="imagePickButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onChoseFileButtonClicked" prefHeight="26.0" prefWidth="165.0" text="Pick Image" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Label fx:id="imagePickLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="221.0" layoutY="14.0" prefHeight="26.0" prefWidth="165.0" text="No Image selected" textAlignment="CENTER" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Label layoutX="19.0" layoutY="215.0" prefHeight="16.0" prefWidth="174.0" text="Number of puzzle pieces:" AnchorPane.leftAnchor="14.0" />
+      <Slider fx:id="puzzlePiecesSlider" layoutX="201.0" layoutY="215.0" majorTickUnit="2.0" min="4.0" minorTickCount="2" snapToTicks="true" value="4.0" AnchorPane.rightAnchor="59.0" />
+      <Label fx:id="puzzlePiecesLabel" layoutX="341.0" layoutY="215.0" prefHeight="16.0" prefWidth="34.0" text="4" AnchorPane.rightAnchor="14.0" />
+      <ImageView fx:id="previewImageView" fitHeight="150.0" fitWidth="371.0" layoutX="14.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="55.0" />
    </children>
 </AnchorPane>

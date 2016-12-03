@@ -149,7 +149,10 @@ public class MainController extends Controller
     @FXML
     private void onReshuffleClicked()
     {
-        board.shuffle();
-        refreshBoard();
+        if(board != null)
+        {
+            board.shuffle();
+            refreshBoard();
+        }
     }
 }
