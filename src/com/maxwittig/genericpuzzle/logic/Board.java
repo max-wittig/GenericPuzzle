@@ -80,7 +80,7 @@ public class Board
         return positions;
     }
 
-	private void shuffle()
+	public void shuffle()
     {
 
         ArrayList<Point2D> positions = getPuzzlePositions(mixedPuzzle);

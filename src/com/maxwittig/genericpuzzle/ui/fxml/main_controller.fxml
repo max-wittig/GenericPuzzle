@@ -19,7 +19,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                  <MenuItem mnemonicParsing="false" onAction="#onReshuffleClicked" text="Reshuffle" />
                </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

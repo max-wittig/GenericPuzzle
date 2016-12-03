@@ -39,7 +39,7 @@ public class MainController extends Controller
 
             Scene scene = new Scene(root);
             Stage imageImportStage = new Stage();
-            imageImportStage.setResizable(false);
+            imageImportStage.setResizable(true);
             imageImportStage.setScene(scene);
             imageImportStage.show();
             ((ImageImportController)loader.getController()).init(stage, this);
@@ -144,5 +144,12 @@ public class MainController extends Controller
             currentlySelectedPiece = null;
             refreshBoard();
         }
+    }
+
+    @FXML
+    private void onReshuffleClicked()
+    {
+        board.shuffle();
+        refreshBoard();
     }
 }

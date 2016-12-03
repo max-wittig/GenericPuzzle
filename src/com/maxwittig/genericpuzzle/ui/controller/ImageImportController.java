@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -20,6 +21,7 @@ public class ImageImportController extends Controller
     private Slider puzzlePiecesSlider;
     @FXML
     private Label puzzlePiecesLabel;
+    @FXML private ImageView previewImageView;
     private int numberOfPuzzlePieces = 2;
     private Image selectedImage = null;
 
@@ -63,6 +65,7 @@ public class ImageImportController extends Controller
             try
             {
                 selectedImage = new Image(selectedFile.toURI().toURL().toString());
+                previewImageView.setImage(selectedImage);
             }
             catch (Exception e)
             {
