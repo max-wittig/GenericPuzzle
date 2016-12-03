@@ -93,6 +93,13 @@ public class Board
         }
     }
 
+    public void swapPieces(PuzzlePiece puzzlePiece, PuzzlePiece puzzlePiece2)
+    {
+        Point2D tempPosition = puzzlePiece2.getPosition();
+        puzzlePiece2.setPosition(puzzlePiece.getPosition());
+        puzzlePiece.setPosition(tempPosition);
+    }
+
 	public int getMaxHeight()
     {
         return completePuzzle.size();

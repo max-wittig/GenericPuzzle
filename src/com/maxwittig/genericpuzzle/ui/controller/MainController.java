@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -21,7 +22,7 @@ public class MainController extends Controller
 
     private Board board;
     @FXML private GridPane gridPane;
-    private PuzzlePiece currentlySelectedPiece;
+    private PuzzlePiece currentlySelectedPiece = null;
 
     @Override
     protected void initController()
@@ -85,6 +86,15 @@ public class MainController extends Controller
         //gridPane.setGridLinesVisible(true);
     }
 
+    private Background getBackGroundFromImage(Image image, double width, double height)
+    {
+        BackgroundImage backgroundImage = new BackgroundImage(image,
+                BackgroundRepeat.NO_REPEAT,BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,new BackgroundSize(width, height, true, true, false, false));
+        Background background = new Background(backgroundImage);
+        return background;
+    }
+
     private void refreshBoard()
     {
         gridPane.getChildren().clear();
@@ -93,18 +103,19 @@ public class MainController extends Controller
             for(PuzzlePiece puzzlePiece : row)
             {
                 StackPane stackPane = new StackPane();
-                ImageView imageView = new ImageView(puzzlePiece.getImage());
-                imageView.setOnMouseClicked(new EventHandler<MouseEvent>()
+                stackPane.setOnMouseClicked(new EventHandler<MouseEvent>()
                 {
                     @Override
                     public void handle(MouseEvent event)
                     {
-                       onImageViewClicked(puzzlePiece);
+                        onImageViewClicked(puzzlePiece);
+                        stackPane.setStyle("-fx-border-color: red;");
                     }
                 });
                 stackPane.setStyle("-fx-border-color: black;");
-                stackPane.getChildren().add(imageView);
                 gridPane.add(stackPane, (int)puzzlePiece.getPosition().getX(), (int)puzzlePiece.getPosition().getY());
+                stackPane.setBackground(getBackGroundFromImage(puzzlePiece.getImage(), 1, 1));
+
             }
         }
         adjustGridPane();
@@ -112,6 +123,15 @@ public class MainController extends Controller
 
     private void onImageViewClicked(PuzzlePiece puzzlePiece)
     {
-
+        if(currentlySelectedPiece == null)
+        {
+            currentlySelectedPiece = puzzlePiece;
+        }
+        else
+        {
+            board.swapPieces(currentlySelectedPiece, puzzlePiece);
+            currentlySelectedPiece = null;
+            refreshBoard();
+        }
     }
 }
