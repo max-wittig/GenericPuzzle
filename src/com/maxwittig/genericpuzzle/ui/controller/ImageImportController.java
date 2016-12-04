@@ -22,12 +22,13 @@ public class ImageImportController extends Controller
     @FXML
     private Label puzzlePiecesLabel;
     @FXML private ImageView previewImageView;
-    private int numberOfPuzzlePieces = 2;
+    private int numberOfPuzzlePieces;
     private Image selectedImage = null;
 
     @Override
     protected void initController()
     {
+        numberOfPuzzlePieces = (int)puzzlePiecesSlider.getValue();
         puzzlePiecesSlider.valueProperty().addListener(new ChangeListener<Number>()
         {
             @Override
@@ -88,6 +89,7 @@ public class ImageImportController extends Controller
         {
             Board board = new Board(selectedImage, numberOfPuzzlePieces);
             ((MainController) parentController).setBoard(board);
+            stage.close();
         }
     }
 }

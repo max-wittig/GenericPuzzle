@@ -21,7 +21,6 @@ public class MainController extends Controller
 
     private Board board;
     @FXML private GridPane gridPane;
-    private PuzzlePiece currentlySelectedPiece = null;
 
     @Override
     protected void initController()
@@ -42,7 +41,7 @@ public class MainController extends Controller
             imageImportStage.setResizable(true);
             imageImportStage.setScene(scene);
             imageImportStage.show();
-            ((ImageImportController)loader.getController()).init(stage, this);
+            ((ImageImportController)loader.getController()).init(imageImportStage, this);
 
         }
         catch (Exception e)
@@ -131,17 +130,17 @@ public class MainController extends Controller
 
     private void onImageViewClicked(PuzzlePiece puzzlePiece)
     {
-        if(currentlySelectedPiece == null)
+        if(board.getCurrentlySelectedPiece() == null)
         {
-            currentlySelectedPiece = puzzlePiece;
+            board.setCurrentlySelectedPiece(puzzlePiece);
         }
         else
         {
-            if(board.swapPieces(currentlySelectedPiece, puzzlePiece))
+            if(board.swapPieces(board.getCurrentlySelectedPiece(), puzzlePiece))
             {
                 showWinAlert();
             }
-            currentlySelectedPiece = null;
+            board.setCurrentlySelectedPiece(null);
             refreshBoard();
         }
     }

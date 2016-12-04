@@ -13,6 +13,7 @@ public class Board
 	private int pieces;
 	private ArrayList<ArrayList<PuzzlePiece>> completePuzzle;
 	private ArrayList<ArrayList<PuzzlePiece>> mixedPuzzle;
+	private PuzzlePiece currentlySelectedPiece = null;
 
 	public Board(Image image, int pieces)
 	{
@@ -147,5 +148,15 @@ public class Board
     public ArrayList<ArrayList<PuzzlePiece>> getMixedPuzzle()
     {
         return mixedPuzzle;
+    }
+
+    public PuzzlePiece getCurrentlySelectedPiece()
+    {
+        return currentlySelectedPiece;
+    }
+
+    public void setCurrentlySelectedPiece(PuzzlePiece currentlySelectedPiece)
+    {
+        this.currentlySelectedPiece = currentlySelectedPiece;
     }
 }
